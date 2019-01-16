@@ -1,25 +1,106 @@
 <html>
     <head>
         <title>M&eacute;t&eacute;o du jour</title>
-        <script src="meteo.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body onload="init_page()">
-        <h1>Application M&eacute;t&eacute;o</h1>
+        <div class="container">
+            <h1>Application M&eacute;t&eacute;o</h1>
 
-        <p>
-            Nom de la ville :
-            <input type="text" id="ville" value=""><br>
-            <button type="button" onclick="get_temperature()" >Envoyer</button>
-            <input type="checkbox" id="url_visibility">
-        </p>
+            <!-- Choice town -->
+            <div id="url">
 
-        <div id="url">
+                </div>
+            <p>
+                Nom de la ville :
+                <input type="text" id="ville" value=""><br>
+                <button type="button" onclick="get_temperature()" >Envoyer</button>
+                <input type="checkbox" id="url_visibility">
+            </p>
 
+            <!-- Weather now -->
+            <div id="liveWeather">
+                <div id="meteo">
+
+                </div>
+                <img id="icon" src="">
+            </div>
+
+            <!-- 5 days weather -->
+            <div id="DaysWeather">
+                <div id="Day1">
+                    <div id="DateD1">
+                        Date Jour 1
+                    </div>
+                    <div id="IconD1">
+                        Icone Jour 1
+                    </div>
+                    <div id="TempD1">
+                        temp Jour 1
+                    </div>
+                    <div id="TempMinD1">
+                        tempMin Jour 1
+                    </div>
+                </div>
+                <div id="Day2">
+                    <div id="DateD2">
+                        Date Jour 2
+                    </div>
+                    <div id="IconD2">
+                        Icone Jour 2
+                    </div>
+                    <div id="TempD2">
+                        temp Jour 2
+                    </div>
+                    <div id="TempMinD2">
+                        tempMin Jour 2
+                    </div>
+
+                </div>
+                <div id="Day3">
+                    <div id="DateD3">
+
+                    </div>
+                    <div id="IconD3">
+
+                    </div>
+                    <div id="TempD3">
+
+                    </div>
+                    <div id="TempMinD3">
+
+                    </div>
+                </div>
+                <div id="Day4">
+                    <div id="DateD4">
+
+                    </div>
+                    <div id="IconD4">
+
+                    </div>
+                    <div id="TempD4">
+
+                    </div>
+                    <div id="TempMinD4">
+
+                    </div>
+                </div>
+                <div id="Day5">
+                    <div id="DateD5">
+
+                    </div>
+                    <div id="IconD5">
+
+                    </div>
+                    <div id="TempD5">
+
+                    </div>
+                    <div id="TempMinD5">
+
+                    </div>
+                </div>
+            </div>
+            <script src="meteo.js"></script>
         </div>
-        <div id="meteo">
-
-        </div>
-        <img id="icon" src="">
     </body>
 </html>
