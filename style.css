@@ -6,7 +6,6 @@ body {
     max-width: 80%;
     background-color: white;
     margin: auto;
-    height: 1000px;
 }
 
 #DaysWeather {
@@ -17,6 +16,24 @@ body {
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+@media screen and (min-width: 600px){
+    #iconActualWeatherContainer {
+        width: 100%;
+    }
+
+    #icon {
+        width: 40%;
+        margin: auto;
+        height: auto;
+        display: block;
+    }
+
+    #tempNow {
+        font-weight: bold;
+        font-size: 30px;
+    }
 }
 
 
