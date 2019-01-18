@@ -43,6 +43,8 @@ function init_page() {
     
     xhr.open("GET", get_url(), true);
     xhr.send();
+
+    get_temperatureD1();
 }
 
 function get_temperature() {
@@ -72,5 +74,18 @@ function get_temperature() {
     };
     
     xhr.open("GET", get_url(), true);
+    xhr.send();
+}
+
+function get_temperatureD1() {
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            var temp = response.list[0].main.temp;
+            var eltDate = document.getElementById("TempD1").innerHTML = temp;;
+        }
+    };
+    
+    xhr.open("GET", get_url_forecast(), true);
     xhr.send();
 }
