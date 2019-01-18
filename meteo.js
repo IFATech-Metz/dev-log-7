@@ -3,13 +3,23 @@ var xhr = new XMLHttpRequest();
 // Forme générale du lien :
 // http://api.openweathermap.org/data/2.5/weather?q=Metz&3c084bd74c2f77f02d6d6c30c2018bf0
 
-var base_url = "http://api.openweathermap.org/data/2.5/weather";
+var base_url = "http://api.openweathermap.org/data/2.5/";
+var base = "weather";
+var base_forecast = "forecast";
 var city = "Metz";
 var units = "metric";
-var appid = "348e43383864ecfba8b0827cc402f3ff";
+var appid = "dd8984d9d3055c049aa688cc2dc715b7";
 
 function get_url() {
-    return base_url + "?"
+    return base_url + base + "?"
+        + "q=" + city + "&"
+        + "units=" + units + "&"
+        + "appid=" + appid;
+}
+
+// api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
+function get_url_forecast(){
+    return base_url + base_forecast + "?"
         + "q=" + city + "&"
         + "units=" + units + "&"
         + "appid=" + appid;
@@ -55,7 +65,7 @@ function get_temperature() {
             var icon = response.weather[0].icon;
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
             
-            document.getElementById("meteo").innerHTML = temperature;
+            document.getElementById("tempNow").innerHTML = temperature;
             document.getElementById("icon").src = src;
 
         }

@@ -1,3 +1,39 @@
 body {
-    background-color: rgba(225, 0, 0, 0.5)
+    background-color: rgba(225, 0, 0, 0.5);
 }
+
+.container {
+    max-width: 80%;
+    background-color: white;
+    margin: auto;
+}
+
+#DaysWeather {
+    display: flex;
+    background-color: rgba(56, 53, 53, 0.13);
+    border:1px solid #000000f1;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+@media screen and (min-width: 600px){
+    #iconActualWeatherContainer {
+        width: 100%;
+    }
+
+    #icon {
+        width: 40%;
+        margin: auto;
+        height: auto;
+        display: block;
+    }
+
+    #tempNow {
+        font-weight: bold;
+        font-size: 30px;
+    }
+}
+
+
