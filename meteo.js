@@ -45,7 +45,6 @@ function init_page() {
             var icon = response.weather[0].icon;
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
             var response = JSON.parse(this.responseText);
-            var tempforecast = response.list.main.temp;
             document.getElementById("meteo").innerHTML = temperature;
             document.getElementById("icon").src = src;
         }
@@ -55,8 +54,10 @@ function init_page() {
     xhr.send();
 
     get_D1();
-    
-
+    get_D2();
+    get_D3();
+    get_D4();
+    get_D5();
 }
 
 function timeConverter(UNIX_timestamp){
@@ -208,19 +209,19 @@ function get_D5() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            var temp = response.list[40].main.temp;
+            var temp = response.list[39].main.temp;
             document.getElementById("TempD5").innerHTML = temp;
 
-            var tempmin = response.list[40].main.temp_min;
+            var tempmin = response.list[39].main.temp_min;
             document.getElementById("TempMinD5").innerHTML = tempmin;
 
-            var tempmax = response.list[40].main.temp_max;
+            var tempmax = response.list[39].main.temp_max;
             document.getElementById("TempMaxD5").innerHTML = tempmax;
             
-            var date = response.list[40].dt;
+            var date = response.list[39].dt;
             document.getElementById("DateD5").innerHTML = date;
             
-            var icon=response.list[40].weather.icon;
+            var icon=response.list[39].weather.icon;
             document.getElementById("IconD5").innerHTML = icon;
         }
     };
