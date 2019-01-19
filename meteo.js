@@ -46,16 +46,6 @@ function init_page() {
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
             var response = JSON.parse(this.responseText);
             var tempforecast = response.list.main.temp;
-            var tempminforecast = response.list.main.temp_min;
-            var tempmaxforecast = response.list.main.temp_max;
-            var iconforecast = response.list.weather.icon;
-
-            var src = "http://openweathermap.org/img/w/" + icon + ".png";
-
-            document.getElementById("iconforecast").src = src;
-            document.getElementById("tempforecast").innerhtml = tempforecast;
-            document.getElementById("tempmin").innerhtml = tempminforecast;
-            document.getElementById("tempmax").innerhtml = tempmaxforecast;
             document.getElementById("meteo").innerHTML = temperature;
             document.getElementById("icon").src = src;
         }
@@ -63,8 +53,23 @@ function init_page() {
     
     xhr.open("GET", get_url(), true);
     xhr.send();
-    xhr.open("GET", get_urlforecast(), true);
-    xhr.send();
+
+    get_D1();
+    
+
+}
+
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
 }
 
 function get_temperature() {
@@ -97,33 +102,129 @@ function get_temperature() {
     xhr.send();
 }
 
-function get_forecast(){
-    city = document.getElementById("ville").value;
+function get_D1() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("url").innerHTML = get_urlforecast();
-
-            if(document.getElementById("url_visibility").checked) {
-                document.getElementById("url").style.display = "block";
-            }
-            else {
-                document.getElementById("url").style.display = "none";
-            }
-
             var response = JSON.parse(this.responseText);
-            var tempforecast = response.list.main.temp;
-            var tempminforecast = response.list.main.temp_min;
-            var tempmaxforecast = response.list.main.temp_max;
-            var iconforecast = response.list.weather.icon;
+            var temp = response.list[8].main.temp;
+            document.getElementById("TempD1").innerHTML = temp;
 
-            var src = "http://openweathermap.org/img/w/" + icon + ".png";
+            var tempmin = response.list[8].main.temp_min;
+            document.getElementById("TempMinD1").innerHTML = tempmin;
 
-            document.getElementById("iconforecast").src = src;
-            document.getElementById("tempforecast").innerhtml = tempforecast;
-            document.getElementById("tempmin").innerhtml = tempminforecast;
-            document.getElementById("tempmax").innerhtml = tempmaxforecast;
+            var tempmax = response.list[8].main.temp_max;
+            document.getElementById("TempMaxD1").innerHTML = tempmax;
+            
+            var date = response.list[8].dt
+            console.log(timeConverter(date));
+            document.getElementById("DateD1").innerHTML = date;
+           
+            var icon=response.list[8].weather.icon;
+            document.getElementById("IconD1").innerHTML = icon;
+            
         }
-        xhr.open("GET", get_urlforecast(), true);
-        xhr.send();
-    }    
+    };
+    
+    xhr.open("GET", get_url_forecast(), true);
+    xhr.send();
+}
+
+function get_D2() {
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            var temp = response.list[16].main.temp;
+            document.getElementById("TempD2").innerHTML = temp;
+
+            var tempmin = response.list[16].main.temp_min;
+            document.getElementById("TempMinD2").innerHTML = tempmin;
+
+            var tempmax = response.list[16].main.temp_max;
+            document.getElementById("TempMaxD2").innerHTML = tempmax;
+            
+            var date = response.list[16].dt;
+            document.getElementById("DateD2").innerHTML = date;
+            
+            var icon=response.list[16].weather.icon;
+            document.getElementById("IconD2").innerHTML = icon;
+        }
+    };
+    
+    xhr.open("GET", get_url_forecast(), true);
+    xhr.send();
+}
+
+function get_D3() {
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            var temp = response.list[24].main.temp;
+            document.getElementById("TempD3").innerHTML = temp;
+
+            var tempmin = response.list[24].main.temp_min;
+            document.getElementById("TempMinD3").innerHTML = tempmin;
+
+            var tempmax = response.list[24].main.temp_max;
+            document.getElementById("TempMaxD3").innerHTML = tempmax;
+            
+            var date = response.list[24].dt;
+            document.getElementById("DateD3").innerHTML = date;
+            
+            var icon=response.list[24].weather.icon;
+            document.getElementById("IconD3").innerHTML = icon;
+        }
+    };
+    
+    xhr.open("GET", get_url_forecast(), true);
+    xhr.send();
+}
+
+function get_D4() {
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            var temp = response.list[32].main.temp;
+            document.getElementById("TempD4").innerHTML = temp;
+
+            var tempmin = response.list[32].main.temp_min;
+            document.getElementById("TempMinD4").innerHTML = tempmin;
+
+            var tempmax = response.list[32].main.temp_max;
+            document.getElementById("TempMaxD4").innerHTML = tempmax;
+            
+            var date = response.list[32].dt;
+            document.getElementById("DateD4").innerHTML = date;
+            
+            var icon=response.list[32].weather.icon;
+            document.getElementById("IconD4").innerHTML = icon;
+        }
+    };
+    
+    xhr.open("GET", get_url_forecast(), true);
+    xhr.send();
+}
+
+function get_D5() {
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            var temp = response.list[40].main.temp;
+            document.getElementById("TempD5").innerHTML = temp;
+
+            var tempmin = response.list[40].main.temp_min;
+            document.getElementById("TempMinD5").innerHTML = tempmin;
+
+            var tempmax = response.list[40].main.temp_max;
+            document.getElementById("TempMaxD5").innerHTML = tempmax;
+            
+            var date = response.list[40].dt;
+            document.getElementById("DateD5").innerHTML = date;
+            
+            var icon=response.list[40].weather.icon;
+            document.getElementById("IconD5").innerHTML = icon;
+        }
+    };
+    
+    xhr.open("GET", get_url_forecast(), true);
+    xhr.send();
 }
