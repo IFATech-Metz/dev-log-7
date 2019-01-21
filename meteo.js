@@ -34,6 +34,7 @@ function get_urlforecast(){
 }
 
 function init_page() {
+    var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();
@@ -51,29 +52,13 @@ function init_page() {
     };
     
     xhr.open("GET", get_url(), true);
-    xhr.send();
-
-    get_D1();
-    get_D2();
-    get_D3();
-    get_D4();
-    get_D5();
-}
-
-function timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var sec = a.getSeconds();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-    return time;
+    xhr.open("GET", get_urlforecast(),true);
+    get_Forecast();
+    xhr.send;
 }
 
 function get_temperature() {
+    var xhr = new XMLHttpRequest();
     city = document.getElementById("ville").value;
 
     xhr.onreadystatechange = function() {
@@ -103,129 +88,99 @@ function get_temperature() {
     xhr.send();
 }
 
-function get_D1() {
+function get_Forecast() {
+    var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            var temp = response.list[8].main.temp;
-            document.getElementById("TempD1").innerHTML = temp;
 
-            var tempmin = response.list[8].main.temp_min;
-            document.getElementById("TempMinD1").innerHTML = tempmin;
+            //D1
 
-            var tempmax = response.list[8].main.temp_max;
-            document.getElementById("TempMaxD1").innerHTML = tempmax;
+            var tempD1 = response.list[7].main.temp;
+            document.getElementById("TempD1").innerHTML = tempD1;
+
+            var tempminD1 = response.list[7].main.temp_min;
+            document.getElementById("TempMinD1").innerHTML = tempminD1;
+
+            var tempmaxD1 = response.list[7].main.temp_max;
+            document.getElementById("TempMaxD1").innerHTML = tempmaxD1;
             
-            var date = response.list[8].dt
-            console.log(timeConverter(date));
-            document.getElementById("DateD1").innerHTML = date;
+            var dateD1 = response.list[7].dt_txt;
+            document.getElementById("DateD1").innerHTML = dateD1;
            
-            var icon=response.list[8].weather.icon;
-            document.getElementById("IconD1").innerHTML = icon;
+            var iconD1 = response.list[7].weather.icon;
+            document.getElementById("IconD1").innerHTML = iconD1;
             
+            //D2
+
+            var tempD2 = response.list[15].main.temp;
+            document.getElementById("TempD2").innerHTML = tempD2;
+
+            var tempminD2 = response.list[15].main.temp_min;
+            document.getElementById("TempMinD2").innerHTML = tempminD2;
+
+            var tempmaxD2 = response.list[15].main.temp_max;
+            document.getElementById("TempMaxD2").innerHTML = tempmaxD2;
+            
+            var dateD2 = response.list[15].dt_txt;
+            document.getElementById("DateD2").innerHTML = dateD2;
+            
+            var iconD2 = response.list[15].weather.icon;
+            document.getElementById("IconD2").innerHTML = iconD2;
+            
+            //D3
+
+            var tempD3 = response.list[23].main.temp;
+            document.getElementById("TempD3").innerHTML = tempD3;
+
+            var tempminD3 = response.list[23].main.temp_min;
+            document.getElementById("TempMinD3").innerHTML = tempminD3;
+
+            var tempmaxD3 = response.list[23].main.temp_max;
+            document.getElementById("TempMaxD3").innerHTML = tempmaxD3;
+            
+            var dateD3 = response.list[23].dt_txt;
+            document.getElementById("DateD3").innerHTML = dateD3;
+            
+            var iconD3 = response.list[23].weather.icon;
+            document.getElementById("IconD3").innerHTML = iconD3;
+        
+            //D4
+
+            var tempD4 = response.list[31].main.temp;
+            document.getElementById("TempD4").innerHTML = tempD4;
+
+            var tempminD4 = response.list[31].main.temp_min;
+            document.getElementById("TempMinD4").innerHTML = tempminD4;
+
+            var tempmaxD4 = response.list[31].main.temp_max;
+            document.getElementById("TempMaxD4").innerHTML = tempmaxD4;
+            
+            var dateD4 = response.list[31].dt_txt;
+            document.getElementById("DateD4").innerHTML = dateD4;
+            
+            var iconD4 = response.list[31].weather.icon;
+            document.getElementById("IconD4").innerHTML = iconD4;
+            
+            //D5
+
+            var tempD5 = response.list[39].main.temp;
+            document.getElementById("TempD5").innerHTML = tempD5;
+
+            var tempminD5 = response.list[39].main.temp_min;
+            document.getElementById("TempMinD5").innerHTML = tempminD5;
+
+            var tempmaxD5 = response.list[39].main.temp_max;
+            document.getElementById("TempMaxD5").innerHTML = tempmaxD5;
+            
+            var dateD5 = response.list[39].dt_txt;
+            document.getElementById("DateD5").innerHTML = dateD5;
+            
+            var iconD5 = response.list[39].weather.icon;
+            document.getElementById("IconD5").innerHTML = iconD5;
         }
     };
     
-    xhr.open("GET", get_url_forecast(), true);
-    xhr.send();
-}
-
-function get_D2() {
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            var temp = response.list[16].main.temp;
-            document.getElementById("TempD2").innerHTML = temp;
-
-            var tempmin = response.list[16].main.temp_min;
-            document.getElementById("TempMinD2").innerHTML = tempmin;
-
-            var tempmax = response.list[16].main.temp_max;
-            document.getElementById("TempMaxD2").innerHTML = tempmax;
-            
-            var date = response.list[16].dt;
-            document.getElementById("DateD2").innerHTML = date;
-            
-            var icon=response.list[16].weather.icon;
-            document.getElementById("IconD2").innerHTML = icon;
-        }
-    };
-    
-    xhr.open("GET", get_url_forecast(), true);
-    xhr.send();
-}
-
-function get_D3() {
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            var temp = response.list[24].main.temp;
-            document.getElementById("TempD3").innerHTML = temp;
-
-            var tempmin = response.list[24].main.temp_min;
-            document.getElementById("TempMinD3").innerHTML = tempmin;
-
-            var tempmax = response.list[24].main.temp_max;
-            document.getElementById("TempMaxD3").innerHTML = tempmax;
-            
-            var date = response.list[24].dt;
-            document.getElementById("DateD3").innerHTML = date;
-            
-            var icon=response.list[24].weather.icon;
-            document.getElementById("IconD3").innerHTML = icon;
-        }
-    };
-    
-    xhr.open("GET", get_url_forecast(), true);
-    xhr.send();
-}
-
-function get_D4() {
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            var temp = response.list[32].main.temp;
-            document.getElementById("TempD4").innerHTML = temp;
-
-            var tempmin = response.list[32].main.temp_min;
-            document.getElementById("TempMinD4").innerHTML = tempmin;
-
-            var tempmax = response.list[32].main.temp_max;
-            document.getElementById("TempMaxD4").innerHTML = tempmax;
-            
-            var date = response.list[32].dt;
-            document.getElementById("DateD4").innerHTML = date;
-            
-            var icon=response.list[32].weather.icon;
-            document.getElementById("IconD4").innerHTML = icon;
-        }
-    };
-    
-    xhr.open("GET", get_url_forecast(), true);
-    xhr.send();
-}
-
-function get_D5() {
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            var temp = response.list[39].main.temp;
-            document.getElementById("TempD5").innerHTML = temp;
-
-            var tempmin = response.list[39].main.temp_min;
-            document.getElementById("TempMinD5").innerHTML = tempmin;
-
-            var tempmax = response.list[39].main.temp_max;
-            document.getElementById("TempMaxD5").innerHTML = tempmax;
-            
-            var date = response.list[39].dt;
-            document.getElementById("DateD5").innerHTML = date;
-            
-            var icon=response.list[39].weather.icon;
-            document.getElementById("IconD5").innerHTML = icon;
-        }
-    };
-    
-    xhr.open("GET", get_url_forecast(), true);
+    xhr.open("GET", get_urlforecast(), true);
     xhr.send();
 }
