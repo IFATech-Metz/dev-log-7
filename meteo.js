@@ -45,7 +45,7 @@ function init_page() {
     var countDay = 0;
     for(i=1; i<41; i+=8){
         countDay += 1;
-        get_weather(countDay);
+        get_weather(countDay, i);
     }
 }
 
@@ -78,16 +78,16 @@ function get_temperature() {
     xhr.send();
 }
 
-function get_weather(day) {
+function get_weather(day, nextDay) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            var temp = response.list[day].main.temp;
-            var dt_txt = response.list[day].dt_txt;
-            var tempMin = response.list[day].main.temp_min;
-            var tempMax = response.list[day].main.temp_max;
-            var icon = response.list[day].weather[0].icon;
+            var temp = response.list[nextDay].main.temp;
+            var dt_txt = response.list[nextDay].dt_txt;
+            var tempMin = response.list[nextDay].main.temp_min;
+            var tempMax = response.list[nextDay].main.temp_max;
+            var icon = response.list[nextDay].weather[0].icon;
             document.getElementById("TempD" + day ).innerHTML = temp;
             document.getElementById("TempMinD" + day ).innerHTML = tempMin + "/" + tempMax;
             document.getElementById("DateD" + day).innerHTML = dt_txt;
