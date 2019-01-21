@@ -1,5 +1,3 @@
-var xhr = new XMLHttpRequest();
-
 // Forme générale du lien :
 // http://api.openweathermap.org/data/2.5/weather?q=Metz&3c084bd74c2f77f02d6d6c30c2018bf0
 
@@ -26,6 +24,7 @@ function get_url_forecast(){
 }
 
 function init_page() {
+    let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();
@@ -40,16 +39,19 @@ function init_page() {
             document.getElementById("icon").src = src;
         }
     };
-    
     xhr.open("GET", get_url(), true);
     xhr.send();
 
-    get_temperatureD1();
+    var countDay = 0;
+    for(i=1; i<41; i+=8){
+        countDay += 1;
+        get_weather(countDay, i);
+    }
 }
 
 function get_temperature() {
     city = document.getElementById("ville").value;
-
+    let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();
@@ -72,20 +74,46 @@ function get_temperature() {
 
         }
     };
-    
     xhr.open("GET", get_url(), true);
     xhr.send();
 }
 
-function get_temperatureD1() {
+function get_weather(day, nextDay) {
+    let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            var temp = response.list[0].main.temp;
-            var eltDate = document.getElementById("TempD1").innerHTML = temp;;
+            var temp = response.list[nextDay].main.temp;
+            var dt_txt = response.list[nextDay].dt_txt;
+            var tempMin = response.list[nextDay].main.temp_min;
+            var tempMax = response.list[nextDay].main.temp_max;
+            var icon = response.list[nextDay].weather[0].icon;
+            document.getElementById("TempD" + day ).innerHTML = temp;
+            document.getElementById("TempMinD" + day ).innerHTML = tempMin + "/" + tempMax;
+            document.getElementById("DateD" + day).innerHTML = dt_txt;
+            document.getElementById("iconImgD" + day).src = "http://openweathermap.org/img/w/" + icon + ".png";
         }
     };
-    
     xhr.open("GET", get_url_forecast(), true);
     xhr.send();
 }
+
+/* function get_weatherD2(day) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            var temp = response.list[8].main.temp;
+            var dt_txt = response.list[8].dt_txt;
+            var tempMin = response.list[8].main.temp_min;
+            var tempMax = response.list[8].main.temp_max;
+            var icon = response.list[8].weather[0].icon;
+            document.getElementById("TempD2").innerHTML = temp;
+            document.getElementById("TempMinD2").innerHTML = tempMin + "/" + tempMax;
+            document.getElementById("DateD2").innerHTML = dt_txt;
+            document.getElementById("iconImgD2").childNodes[0].src = "http://openweathermap.org/img/w/" + icon + ".png";
+        }
+    };
+    xhr.open("GET", get_url_forecast(), true);
+    xhr.send();
+}*/
