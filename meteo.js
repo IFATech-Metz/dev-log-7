@@ -98,6 +98,11 @@ function get_weather(day, nextDay) {
     xhr.send();
 }
 
+function more_Info(){
+    var nameCity =document.getElementById("ville");
+    window.location.href = "./Template/Essai.html?"+ nameCity.value;
+}
+
 /* function get_weatherD2(day) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
