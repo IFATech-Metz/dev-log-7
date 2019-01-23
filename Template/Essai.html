@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>temps</title>
+
+<link rel="stylesheet" type="text/css" href="C:\Users\modele\Documents\Projet\Template\style.css">
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"> </script>-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		crossorigin="anonymous"></script>
+<!--<script
+  src="http://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous">
+</script>-->
+
+<script src="C:\Users\modele\Documents\Projet\Template\script.js"> </script>
+<!--<img src="C:\Users\modele\Documents\Projet\Template\meteo.png"
+style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:-5000;">-->
+
+</head>
+
+<body>
+<div class="header">
+<a class="button" href="Essai.html"> Acceuil</a>
+<select id="select">
+	<option style="color:gray" value="null">-----select one option-----</option>
+	<option value = "main">Météo - temp and pressure</option>
+	<option value = "weather">Temps- Main and Description</option>
+	<option value = "wind">Wind - Deg and Speed</option>
+	<option value = "sys">Sys - country, sunrise and sunset</option>
+	<option value = "coord">Coordonnées - Longitude and Latitude</option>
+	
+</select>
+<input type="text" id="input">
+<button type="button" id="submit">Chercher !</button>
+
+</div>
+
+<div id="content" class="temps-list">
+		<!--content-->
+</div>
+</body>
+</html>
