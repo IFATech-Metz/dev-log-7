@@ -35,7 +35,7 @@ function init_page() {
             var icon = response.weather[0].icon;
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
 
-            document.getElementById("meteo").innerHTML = temperature;
+            document.getElementById("tempNow").innerHTML = temperature+ "<span class=\"celsius\">\u2103</span>";
             document.getElementById("icon").src = src;
         }
     };
@@ -76,6 +76,11 @@ function get_temperature() {
     };
     xhr.open("GET", get_url(), true);
     xhr.send();
+    var countDay = 0;
+    for(i=1; i<41; i+=8){
+        countDay += 1;
+        get_weather(countDay, i);
+    };
 }
 
 function get_weather(day, nextDay) {
